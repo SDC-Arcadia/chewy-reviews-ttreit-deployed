@@ -3,6 +3,12 @@
 ## Node Version
 14.13.1
 
+## Setup
+nvm install 14.13.1
+npm install
+npm run build-prod
+Add newrelic.js with license key and app name
+
 ## Reviews - API Reference
 ### GET /reviewData/:productId
 - http://localhost:3007/reviewData/?productId=71
