@@ -1,0 +1,12 @@
+node_modules
+.env
+example.http
+reviews.dev-bundle.js
+data
+scrap
+*.csv
+fsPractice.js
+example.txt
+*.log
+newrelic.js
+*.pem

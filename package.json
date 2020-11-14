@@ -1,0 +1,93 @@
+{
+  "name": "chris-chewy-description",
+  "version": "1.0.0",
+  "description": "RPT22-FEC_KWAME",
+  "engines": {
+    "node": ">=14.13.1"
+  },
+  "scripts": {
+    "start-server": "nodemon server/server.js",
+    "build-dev": "webpack --config webpack.dev.js --watch",
+    "build-prod": "webpack --config webpack.prod.js",
+    "db:setup": "node db-mongo/seed.js",
+    "lint": "eslint . --ext .js,.jsx",
+    "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feckwame/chris-chewy-description.git"
+  },
+  "author": "Chris Palka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/feckwame/chris-chewy-description/issues"
+  },
+  "homepage": "https://github.com/feckwame/chris-chewy-description#readme",
+  "dependencies": {
+    "aws-sdk": "^2.729.0",
+    "axios": "^0.19.2",
+    "bl": ">=2.2.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "faker": "^5.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "jquery": "^3.5.1",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.28",
+    "newrelic": "^6.14.0",
+    "node-fetch": "^2.6.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1",
+    "typeface-roboto": "0.0.75",
+    "underscore": "^1.10.2",
+    "webpack-merge": "^5.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-arrow-functions": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/register": "^7.10.5",
+    "@testing-library/jest-dom": "^5.11.3",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-styled-components": "^1.11.1",
+    "babel-preset-airbnb": "^5.0.0",
+    "css-loader": "^3.6.0",
+    "dotenv": "^8.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.3",
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.5",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "husky": "^4.2.5",
+    "jest": "^26.4.0",
+    "jest-enzyme": "^7.1.2",
+    "jest-extended": "^0.11.5",
+    "less": "^3.12.2",
+    "moxios": "^0.4.0",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "resolutions": {
+    "styled-components": "^5"
+  }
+}
