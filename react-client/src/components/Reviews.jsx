@@ -32,7 +32,8 @@ const ReviewListContainer = styled.div`
 
 const axios = require('axios');
 
-const SERVER_URL = 'http://localhost:3007'; // Changed
+//const SERVER_URL = 'http://localhost:3007'; // Changed
+const SERVER_URL = 'http://54.224.69.114';
 
 class Reviews extends React.Component {
   constructor(props) {
