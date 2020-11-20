@@ -1,13 +1,18 @@
 /* eslint-disable no-console */
 // eslint-disable-next-line no-unused-vars
-const newrelic = require('newrelic');
+// const newrelic = require('newrelic');
 const express = require('express');
+const redis = require('redis');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const Reviews = require('../db-mongo/Review.js');
 
 const PORT = process.env.PORT || 8080;
+const REDIS_PORT = process.env.REDIS_PORT || 6379;
+
+const client = redis.createClient(REDIS_PORT);
+
 const app = express();
 
 // Middleware
@@ -16,8 +21,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
 
+// Middleware Redis Cache
+function cache(req, res, next) {
+  const { productId } = req.params;
+  client.get(productId, (err, reviews) => {
+    if (err) throw err;
+    if (reviews !== null) {
+      const result = JSON.parse(reviews);
+      res.json(result);
+    } else {
+      next();
+    }
+  });
+}
+
 //  GET Requests
-app.get('/reviewData/:productId', (req, res) => {
+app.get('/reviewData/:productId', cache, (req, res) => {
   console.log(`Returning item: ${req.params.productId}`);
   let { productId } = req.params;
   productId = parseInt(productId, 10);
@@ -26,6 +45,8 @@ app.get('/reviewData/:productId', (req, res) => {
       console.log('Error querying database! ', err);
       res.sendStatus(404);
     } else {
+      // Put data in Redis
+      client.setex(productId, 3600, JSON.stringify(result));
       res.status(200);
       res.json(result);
     }

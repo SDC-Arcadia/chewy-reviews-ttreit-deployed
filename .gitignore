@@ -10,3 +10,4 @@ example.txt
 *.log
 newrelic.js
 *.pem
+dump.rdb
